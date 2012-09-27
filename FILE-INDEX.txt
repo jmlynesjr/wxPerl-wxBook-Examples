@@ -1,0 +1,70 @@
+----------------------------------------------------------------------------------------------------
+
+Index of Example Files from : Cross Platform GUI Programming with wxWidgets
+by: Smart, Hock, and Csomor - The "wxBook"
+Ported to wxPerl by: James M. Lynes, Jr., September 26,2012
+----------------------------------------------------------------------------------------------------
+
+1.  CppTrial-pg019.pl : # C++ Example from pg 19 - Create a basic frame with menus and status bar 
+2.  CppTrial-pg065.pl : # C++ Example from pg 65 - MDI Child Frame Example 
+3.  CppTrial-pg073.pl : # C++ Example from pg 73 - Notebook Example 
+4.  CppTrial-pg077.pl : # C++ Example from pg 77 - Scrolled Window Example 
+5.  CppTrial-pg081.pl : # C++ Example from pg 81 - Splitter Window Example 
+6.  CppTrial-pg086.pl : # C++ Example from pg 86 - 20 Assorted Static & Non-Static Controls Examples 
+7.  CppTrial-pg124.pl : # C++ Example from pg 124 - Tool Bar Example 
+8.  CppTrial-pg133.pl : # C++ Example from pg 133 - Drawing on Windows with wxClientDC 
+9.  CppTrial-pg135.pl : # C++ Example from pg 135 - Drawing on Windows with wxPaintDC 
+10. CppTrial-pg150.pl : # C++ Example from pg 150 - Drawing Text - Extends pg 135 example 
+11. CppTrial-pg151.pl : # C++ Example from pg 151 - Drawing Text Rotated - Extends pg 150 & 135 examples 
+12. CppTrial-pg152.pl : # C++ Example from pg 152 - Centering Text - Extends pg 151, 150, & 135 examples 
+13. CppTrial-pg154.pl : # C++ Example from pg 154 - Drawing multiple lines - Extends pg 135 example 
+14. CppTrial-pg155.pl : # C++ Example from pg 155 - Drawing polygons - Extends pg 154 example 
+15. CppTrial-pg156.pl : # C++ Example from pg 156 - Drawing Splines  - Extends pg 155 example 
+16. CppTrial-pg157.pl : # C++ Example from pg 157 - Drawing Bitmaps - Extends pg 150 example 
+17. CppTrial-pg158.pl : # C++ Example from pg 158 - Copy(Tile) Bitmaps Between Device Contexts - Extends pg 157 example 
+18. CppTrial-pg159A.pl : # C++ Example from pg 159A - Filling arbitrary areas - Extends pg 135 example  
+19. CppTrial-pg159B.pl : # C++ Example from pg 159B - Logical Functions  - Extends pg 135 example 
+20. CppTrial-pg195.pl : # C++ Example from pg 195 - Sizers -Dialog with streatching text control 
+21. CppTrial-pg196.pl : # C++ Example from pg 196 - Sizers -Dialog with static box sizer and check box 
+22. CppTrial-pg197.pl : # C++ Example from pg 197 - Sizers -Dialog with grid sizer 
+23. CppTrial-pg199.pl : # C++ Example from pg 199 - Sizers -Dialog with flex grid sizer 
+24. CppTrial-pg201.pl : # C++ Example from pg 201 - Sizers -Dialog with grid bag sizer 
+25. CppTrial-pg202.pl : # C++ Example from pg 202 - Sizers -Dialog with Standard Dialog Button Sizer 
+26. CppTrial-pg207A.pl : # C++ Example from pg 207(A) - Message Dialog Dialog 
+27. CppTrial-pg207B.pl : # C++ Example from pg 207(B) - Message Box Dialog 
+28. CppTrial-pg209.pl : # C++ Example from pg 209 - Progress Dialog 
+29. CppTrial-pg210.pl : # C++ Example from pg 210 - Busy Info Box 
+30. CppTrial-pg211.pl : # C++ Example from pg 211 - Application Tips Dialog 
+31. CppTrial-pg215.pl : # C++ Example from pg 215 - File Dialog 
+32. CppTrial-pg218.pl : # C++ Example from pg 218 - Directory Dialog 
+33. CppTrial-pg221.pl : # C++ Example from pg 221 - Color Selection Dialog 
+34. CppTrial-pg224.pl : # C++ Example from pg 224 - Font Selection Dialog 
+35. CppTrial-pg225.pl : # C++ Example from pg 225 - Single Choice Dialog 
+36. CppTrial-pg226.pl : # C++ Example from pg 226 - Multiple Choice Dialog 
+37. CppTrial-pg227.pl : # C++ Example from pg 227 - Number Entry Dialog (**Alt Implementation - GetNumberFromUser**) 
+38. CppTrial-pg228A.pl : # C++ Example from pg 228 - Text Entry Dialog (**Alt Implementation - GetTextFromUser**) 
+39. CppTrial-pg228B.pl : # C++ Example from pg 228 - Password Entry Dialog (**Alt Implementation - GetPasswordFromUser**) 
+40. CppTrial-pg245.pl : # C++ Example from pg 245 - Personal Records Dialog 
+41. CppTrial-pg283.pl : # C++ Example from pg 283 - Drawing a masked image 
+42. CppTrial-pg293.pl : # C++ Example from pg 293 - Writing Text to the Clipboard 
+43. CppTrial-pg294.pl : # C++ Example from pg 294 - Writing a bitmap/image to the Clipboard 
+44. CppTrial-pg340.pl : # C++ Example from pg 340 - HTML Window - Displays an HTML file 
+45. CppTrial-pg347.pl : # C++ Example from pg 347 - Simple Grid Example 
+
+Additional support files used by the example code
+-------------------------------------------------
+cut.xpm
+copy.xpm
+print.xpm
+tips.txt
+logo.png
+padre_logo_64x64.png
+pg342.html
+test2.bmp
+
+Documentation Files
+-------------------
+README.txt
+FILE-INDEX.txt
+
+

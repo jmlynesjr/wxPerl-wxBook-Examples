@@ -51,6 +51,12 @@ Ported to wxPerl by: James M. Lynes, Jr., September 26,2012
 44. CppTrial-pg340.pl : # C++ Example from pg 340 - HTML Window - Displays an HTML file 
 45. CppTrial-pg347.pl : # C++ Example from pg 347 - Simple Grid Example 
 
+Additional Example programs and modules
+---------------------------------------
+ScreenCapture.pl - Captures the screen to a file
+WxScreenCapture.pm - Screen capture program above in module form
+wxWizard.pl - Example of a simple wizard(simple version of pg333)
+
 Additional support files used by the example code
 -------------------------------------------------
 cut.xpm

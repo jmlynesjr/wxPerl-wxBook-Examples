@@ -56,6 +56,7 @@ Additional Example programs and modules
 ScreenCapture.pl - Captures the screen to a file
 WxScreenCapture.pm - Screen capture program above in module form
 wxWizard.pl - Example of a simple wizard(simple version of pg333)
+LCDdisplay.pl - Example of a simulated 7 segment LCD display
 
 Additional support files used by the example code
 -------------------------------------------------

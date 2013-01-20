@@ -3,12 +3,14 @@
 # LCDdisplay.pl
 # This script draws a simulated seven segment LCD Display.
 # Segments are drawn as 4 or 6 sided polygons
-# The colon(:) is drawn as 2 ellipses
+# The colon(:) is drawn as 2 ellipses and takes up a character space
+# The decimal(.) is drawn as 1 ellipse and does not take a character space
+# A leading decimal(.) must be prefaced by a 0 as 0.1234
 # For demo purposes the value to be displayed is stored in %wxGlobals{mValue}
 #
 # Written in wxPerl. Tested on Citrus Perl 5.16 with wxWidgets 2.8.x.
 # Ported by: James M. Lynes. Jr.
-# Last Modified Date: January 18, 2013
+# Last Modified Date: January 19, 2013
 #
 # Adapted from LCDWindow.cpp by Marco Cavallini
 # based in part(mostly) on the work of
@@ -27,9 +29,9 @@ my %wxGlobals = (						# Configuration Data
 		 mSegmentLen         => 40,
 		 mSegmentWidth       => 10,
 		 mSpace              => 5,
-		 mNumberDigits       => 6,
-		 mValue		     => "12:45",		# Default string to be displayed
-		 LCD_Number_Segments => 8,
+		 mNumberDigits       => 6,			# width of mValue including . or :
+		 mValue		     => "12.045",		# Default string to be displayed
+		 LCD_Number_Segments => 8,			# Segment 7 is the decimal point
 		 mLightColour        => sub{Wx::Colour->new(0, 255, 0)},	# Bright green
 		 mGrayColour         => sub{Wx::Colour->new(0, 64, 0)},		# Dim green
 		 mDefaultColour      => sub{Wx::Colour->new(0, 0, 0)},		# Black
@@ -37,7 +39,7 @@ my %wxGlobals = (						# Configuration Data
 
 my %wxDigitData = (						# Actual string to be displayed
 		value		     => "",
-		comma		     => 0,			# 0=false, 1=true ? this feature
+		decimal		     => 0,			# 1=true turns on the decimal point for digit
 );
 
 my %ctbl = (							# Map character to segments -
@@ -51,7 +53,7 @@ my %ctbl = (							# Map character to segments -
 		7		     => 0x15,			#   *       *
 		8		     => 0x7F,			#   3       4
 		9		     => 0x77,			#   *       *
-		A		     => 0x5F,			#    ***5***
+		A		     => 0x5F,			#    ***5*** 7
 		B		     => 0x7A,
 		C		     => 0x2B,
 		D		     => 0x7C,
@@ -106,10 +108,15 @@ sub DoDrawing{
         $cbuflen = $wxGlobals{mNumberDigits};
     }
     my $ctr = 0;
+    my $seg = 0;
     while($ctr < $cbuflen) {
-        $wxDigitData{value} = $cbuf[$ctr];
-        $wxDigitData{comma} = 0;				# ? not clear on comma feature yet
-        DrawDigit($dc, $ctr);
+        if($cbuf[$ctr] ne '.') {				# Skip decimal point, not drawn as a character
+            $wxDigitData{value} = $cbuf[$ctr];
+            $wxDigitData{decimal} = 0;
+	    if($cbuf[$ctr-1] eq '.') {$wxDigitData{decimal} = 1;} # Turn on decimal point for this digit
+            DrawDigit($dc, $seg);
+            $seg++;
+        }
         $ctr++
     }
 }
@@ -126,7 +133,7 @@ sub DrawDigit{
             DrawSegment($dc, $digit, $ctr, ($dec>>$ctr)&1);
             $ctr++;
         }
-        DrawSegment($dc, $digit, 7, $wxDigitData{comma});	# ? not clear on digit 7 yet
+        DrawSegment($dc, $digit, 7, $wxDigitData{decimal});	# Draw the decimal point
     }
 }
 sub DrawTwoDots{						# Draws a colon(:)
@@ -218,47 +225,40 @@ sub DrawSegment{
     if($segment < 6) {						# Draw the 4 sided segments(0-5)
        $dc->DrawPolygon(\@points, 0, 0);
     }
-    elsif($segment = 6) {					# Draw the 6 sided segment(6)
+    elsif($segment == 6) {					# Draw the 6 sided segment(6)
         $dc->DrawPolygon(\@p6, 0, 0);
     }
-    else {							# ? not clear on this feature yet(7)
+    else {							# Draw the decimal point(7)
         $y += 2*$sl;
         $x += $sl;
         $dc->DrawEllipse($x+1, $y-$sw, $sw, $sw);
     }
 }
-sub Decode {							# Table lookup for character to
-    my($char) = @_;						# Segment translation
-    my $return;
-    if(defined($ctbl{$char})) {
-        $return = $ctbl{$char};
-    }
-    else {
-         $return = $ctbl{'='};					# Triple bar for undefined character
-    }   
-}
+sub Decode { $ctbl{$_[0]} // $ctbl{'='}}			# Table lookup
+								# for character translation
+
 #
 # Support subs ----------------------------------------------------------------------------
 #
 sub GetDigitWidth{
-    my $return = $wxGlobals{mSegmentLen} + $wxGlobals{mSegmentWidth} + $wxGlobals{mSpace};
+    return $wxGlobals{mSegmentLen} + $wxGlobals{mSegmentWidth} + $wxGlobals{mSpace};
 }
 sub GetDigitHeight{
-    my $return = ($wxGlobals{mSegmentLen}*2) + ($wxGlobals{mSpace}*2);
+    return ($wxGlobals{mSegmentLen}*2) + ($wxGlobals{mSpace}*2);
 }
 sub GetBitmapWidth{
-    my $return = ($wxGlobals{mNumberDigits}*GetDigitWidth()) + $wxGlobals{mSpace};
+    return ($wxGlobals{mNumberDigits}*GetDigitWidth()) + $wxGlobals{mSpace};
 }
 sub GetBitmapHeight{
-    my $return = GetDigitHeight();
+    return GetDigitHeight();
 }
 sub DigitX{
     my($digit) = @_;
-    my $return = GetBitmapWidth()-(($digit+1)*GetDigitWidth());
+    return GetBitmapWidth()-(($digit+1)*GetDigitWidth());
 }
 sub DigitY{
     my($digit) = @_;
-    my $return = $wxGlobals{mSpace};
+    return $wxGlobals{mSpace};
 }
 sub SetNumberDigits{
     my $ndigits = @_;
@@ -269,10 +269,10 @@ sub SetValue{
     $wxGlobals{mValue} = $value;
 }
 sub GetValue{
-    my $return = $wxGlobals{mValue};
+    return $wxGlobals{mValue};
 }
 sub GetNumberDigits{
-    my $return = $wxGlobals{mNumberDigits};
+    return $wxGlobals{mNumberDigits};
 }
 sub SetLightColour{
     my($ref) = @_;
@@ -283,13 +283,13 @@ sub SetGrayColour{
     $wxGlobals{mGrayColour} = $ref;
 }
 sub GetLightColour{
-    my $ref = $wxGlobals{mLightColour};
+    return $wxGlobals{mLightColour};
 }
 sub GetGrayColour{
-    my $ref = $wxGlobals{mGrayColour};
+    return $wxGlobals{mGrayColour};
 }
 sub GetDigitsNeeded{
     my($string) = @_;
-    $string =~ s/\.//;
-    my $return = strlen($string);
+    $string =~ s/\.//g;
+    return strlen($string);
 }

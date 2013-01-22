@@ -58,6 +58,7 @@ WxScreenCapture.pm - Screen capture program above in module form
 wxWizard.pl - Example of a simple wizard(simple version of pg333)
 LCDdisplay.pl - Example of a simulated 7 segment LCD display
 AngularMeter.pl - Example of simulated round panel meter
+LinearMeter.pl - Example of a simulated linear panel meter - verticle or horizontal configuration
 
 Additional support files used by the example code
 -------------------------------------------------

@@ -59,6 +59,8 @@ wxWizard.pl - Example of a simple wizard(simple version of pg333)
 LCDdisplay.pl - Example of a simulated 7 segment LCD display
 AngularMeter.pl - Example of simulated round panel meter
 LinearMeter.pl - Example of a simulated linear panel meter - verticle or horizontal configuration
+LinearMeter3.pm - Module version of Linear Panel Meter
+LM3.pl - Simulated Process Control Screen using LinearMeter3.pm
 
 Additional support files used by the example code
 -------------------------------------------------
